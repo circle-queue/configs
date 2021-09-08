@@ -1,11 +1,11 @@
+```
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
 
 
 set autoindent       " use indentation of previous line
-" use intelligent indentation for C
-set smartindent
+set smartindent      " use intelligent indentation for C
 
 set tabstop=4        " tab width is 4 spaces
 set shiftwidth=4     " indent also with 4 spaces
@@ -36,3 +36,4 @@ set showcmd         " show operator-pending minicommands
 
 set history=1000
 set nrformats-=octal "no octal numbers
+```
