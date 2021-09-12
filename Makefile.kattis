@@ -1,0 +1,39 @@
+CFLAGS = -Wall -g -std=gnu11 -O2 -static
+
+all: samples run
+
+samples: $(wildcard *.c)
+	rm -f *.ansMine *.in *.ans
+	wget https://open.kattis.com/problems/$(basename $^)/file/statement/samples.zip
+	unzip samples.zip
+	rm samples.zip
+
+debug: $(wildcard *.c)
+	gcc $(CFLAGS) $^ -o $(basename $^) -lm
+	gdb $(basename $^)
+	rm $(basename $^)
+
+run: $(wildcard *.c)
+	gcc $(CFLAGS) $^ -o $(basename $^) -lm
+	./$(basename $^) < $(word 1, $(wildcard *.in))
+	rm $(basename $^)
+
+runall: $(wildcard *.c)
+	gcc $(CFLAGS) $^ -o $(basename $^) -lm
+
+	for inFile in $(wildcard *.in); do\
+		echo $$inFile; \
+		./$(basename $^) < $$inFile; \
+	done
+	rm $(basename $^)
+
+test: $(wildcard *.c)
+	gcc $(CFLAGS) $^ -o $(basename $^) -lm
+	for inFile in $(wildcard *.in); do \
+		./$(basename $^) < $$inFile > $${inFile%.*}.ansMine; \
+		diff $${inFile%.*}.ans $${inFile%.*}.ansMine; \
+	done
+	rm $(basename $^)
+
+submit: $(wildcard *.c)
+	python3 submit.py $^
