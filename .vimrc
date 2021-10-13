@@ -40,3 +40,15 @@ highlight CursorColumn ctermbg=16
 
 set history=1000
 set nrformats-=octal "no octal numbers
+
+nnoremap <space> :
+
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
